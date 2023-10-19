@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # 9-rectangle.py
-# stefano madueno alias Ne0
+# kristhian cacho alias Ne0
 """Defines a Rectangle class."""
 
 
