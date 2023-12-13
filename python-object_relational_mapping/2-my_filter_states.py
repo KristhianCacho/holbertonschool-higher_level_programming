@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-""" lists all states with a name starting with N (upper N)
-from the database hbtn_0e_0_usa: """
+""" makes in an argument and displays all values in the states table
+of hbtn_0e_0_usa where name matches the argument. """
 
 import MySQLdb
 import sys
@@ -8,7 +8,7 @@ import sys
 
 def filter_func():
     """ func """
-    if len(sys.argv) != 4:
+    if len(sys.argv) != 5:
         return
 
     db = MySQLdb.connect(
@@ -20,12 +20,14 @@ def filter_func():
     )
 
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM states;")
+    cursor.execute(
+        "SELECT * FROM states WHERE BINARY\
+             name = '{}' ORDER BY states.id ASC;".format(
+            sys.argv[4]))
 
     r = cursor.fetchall()
     for elem in r:
-        if elem[1][0] == 'N':
-            print(elem)
+        print(elem)
 
     db.close()
 
